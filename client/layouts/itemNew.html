@@ -3,8 +3,8 @@
   <div class="row">
 	<div class="col s12">
 	  <ul class="tabs">
-	    <li class="tab col s3"><a href="#new">New Item</a></li>
-	    <li class="tab col s3"><a class="active" href="#list">List</a></li>
+	    <li  class="tab col s3"><a id="listTab" href="#list">List</a></li>
+	    <li  class="tab col s3"><a id="newTab" href="#new">New Item</a></li>
 	  </ul>
 	</div>
 	<div id="new" class="col s12">
@@ -14,18 +14,29 @@
 		  </div>
 	</div>
 	<div id="list" class="col s12">
-		<ul class="collection">
+		<ul class="collapsible popout" data-collapsible="accordion">
 			{{# each items}}		
-			    <li class="collection-item avatar">
-			      <img src="" alt="" class="circle">
-			      <span class="title">{{name}}</span>
-			      <p>{{description}} <br>
-			      </p>
-			      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+			    <li>
+			      <div class="collapsible-header ">
+		      	      <div>
+				      	<span class="title">{{name}}</span>
+		      	      </div>
+		      	      <div class="content">
+		      	    	  <p>{{description}} <br>
+					      </p>
+					      <p>{{pricing}} <br>
+					      </p>
+					      {{#if edditing}} hidden {{/if}}
+		      	      </div>
+				  
+			      </div>
+				  <a class="waves-effect waves-light delete btn"><i class="material-icons left">close</i>Eliminar</a>
+			  	  <div class="collapsible-body">
+			  	 	   {{> quickForm collection="items" id="items-update" doc=this type="update"}}
+			  	  </div>
 			    </li>
 			{{/each}}
 		 </ul>
 	</div>
   </div>
-
 </template>
