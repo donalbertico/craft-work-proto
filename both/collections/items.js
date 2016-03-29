@@ -2,6 +2,12 @@ items = new Mongo.Collection('items');
 items.allow({
 	insert : function(){
 		return true;
+	},
+	update : function(){
+		return true;
+	},
+	remove : function(){
+		return true;
 	}
 });
 recipeSchema = new SimpleSchema({
@@ -54,6 +60,12 @@ recipeSchema = new SimpleSchema({
 	    	type : 'hidden'
 	    }
 	  },
+});
+Meteor.methods({
+	deleteItem : function(id){
+		check(id,String);
+		items.remove(id);
+	}
 });
 items.attachSchema(recipeSchema);
 

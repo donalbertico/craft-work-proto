@@ -26,6 +26,9 @@ gildaspk:autoform-materialize
 
 
 
-autopublish             # Publish all data to the clients (for prototyping)
-insecure                # Allow all DB writes from clients (for prototyping)
+#autopublish  
+           # Publish all data to the clients (for prototyping)
+#insecure           
+     # Allow all DB writes from clients (for prototyping)
 
+check
