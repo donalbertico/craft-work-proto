@@ -21,8 +21,10 @@ Template.itemNew.events({
 		}
 	},
 	'click .collapsible-header ' : function(e){
-		console.log(e);
+		Session.set('current',this);
+		console.log(Session.get('current'));
 		$(e.currentTarget.children[1]).toggle();
+		
 	},
 	'click .waves-effect.waves-light.delete.btn' : function(e){
 		Meteor.call('deleteItem',this._id);
@@ -32,6 +34,10 @@ Template.itemNew.events({
 Template.itemNew.helpers({
 	items(){
 		return items.find({});
+	},
+	current(){
+		return Session.get('current');
 	}
 });
+
 

@@ -30,7 +30,6 @@ recipeSchema = new SimpleSchema({
 	   decimal : true,
 	   label : 'Price',
 	    optional: true,
-	    max: 1000
 	},
 	 createdAt: {
 	    type: Date,
@@ -60,6 +59,15 @@ recipeSchema = new SimpleSchema({
 	    	type : 'hidden'
 	    }
 	  },
+	owner :{
+		type : String,
+		autoValue : function(){
+			return this.userId;
+		},
+	    autoform :{
+	    	type : 'hidden'
+	    }
+	}
 });
 Meteor.methods({
 	deleteItem : function(id){
