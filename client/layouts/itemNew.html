@@ -32,11 +32,14 @@
 			      </div>
 				  <a class="waves-effect waves-light delete btn"><i class="material-icons left">close</i>Eliminar</a>
 			  	  <div class="collapsible-body">
-			  	 	   {{> quickForm collection="items" id="items-update" doc=this type="update"}}
+			  	  	  {{> quickForm collection="items" id="items-update" doc=current type="update"}}
 			  	  </div>
 			    </li>
 			{{/each}}
 		 </ul>
 	</div>
   </div>
+</template>
+<template name="updateForm">
+	
 </template>
