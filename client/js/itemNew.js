@@ -22,7 +22,6 @@ Template.itemNew.events({
 	},
 	'click .collapsible-header ' : function(e){
 		Session.set('current',this);
-		console.log(Session.get('current'));
 		$(e.currentTarget.children[1]).toggle();
 		
 	},

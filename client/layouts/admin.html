@@ -1,0 +1,28 @@
+<template name="admin">
+	<div id="list" class="col s12">
+		<ul class="collapsible popout" data-collapsible="accordion">
+			{{# each users}}		
+			    <li>
+			      <div class="collapsible-header ">
+		      	      <div>
+				      	<span class="title">{{#each emails}}
+												{{address}}
+											{{/each}}
+						</span>
+		      	      </div>
+		      	      <div class="content">
+		      	    	  <p>{{description}} <br>
+					      </p>
+					      <p>{{pricing}} <br>
+					      </p>
+		      	      </div>
+			      </div>
+			      {{# each items}}
+			        <p>{{description}} <br></p>
+			      {{/each}}
+				  <a class="waves-effect waves-light delete btn"><i class="material-icons left">close</i>Eliminar</a>
+			    </li>
+			{{/each}}
+		 </ul>
+	</div>
+</template>
