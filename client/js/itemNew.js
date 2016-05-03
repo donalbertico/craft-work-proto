@@ -5,6 +5,7 @@ AutoForm.hooks({
     }
   }
 });
+
 Template.itemNew.rendered = function() {     
     if(FlowRouter.current().route.name==='new item'){
     	$('#newTab').addClass('active');
@@ -12,6 +13,7 @@ Template.itemNew.rendered = function() {
     $('ul.tabs').tabs(); 
     $('.collapsible').collapsible();
 }
+
 Template.itemNew.events({
 	'click .tabs li' : function(e){
 		if(e.target.id==='newTab'){

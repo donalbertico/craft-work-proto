@@ -1,10 +1,9 @@
 Meteor.publish('items',function (){
-	if(Roles.userIsInRole( this.userId, 'admin' )){
-		return items.find();
-	}else{
-		return items.find({owner : this.userId});
-	}
+
+		return items.find({});
+	
 });
+
 Meteor.publish('users',function (){
 	if(Roles.userIsInRole( this.userId, 'admin' )){
 		return Meteor.users.find();

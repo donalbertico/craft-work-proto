@@ -1,4 +1,6 @@
 items = new Mongo.Collection('items');
+
+
 items.allow({
 	insert : function(){
 		return true;
@@ -10,6 +12,8 @@ items.allow({
 		return true;
 	}
 });
+
+
 recipeSchema = new SimpleSchema({
 	name : {
 		type : String,
@@ -69,11 +73,15 @@ recipeSchema = new SimpleSchema({
 	    }
 	}
 });
+
+
 Meteor.methods({
 	deleteItem : function(id){
 		check(id,String);
 		items.remove(id);
 	}
 });
+
+
 items.attachSchema(recipeSchema);
 
