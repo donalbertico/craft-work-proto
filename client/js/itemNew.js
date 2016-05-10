@@ -16,9 +16,12 @@ Template.itemNew.rendered = function() {
 
 Template.itemNew.events({
 	'click .tabs li' : function(e){
+
 		if(e.target.id==='newTab'){
+
 			window.history.pushState('','','/items/new');
 		}else{
+			
 			window.history.pushState('','','/items');
 		}
 	},
@@ -32,6 +35,7 @@ Template.itemNew.events({
         Materialize.toast('Item borrado!', 4000) ;
 	}
 });
+
 Template.itemNew.helpers({
 	items(){
 		return items.find({});

@@ -1,12 +1,17 @@
 Template.searchBar.rendered = function() {     
 	Meteor.typeahead.inject();
+
 };
 
 Template.searchBar.events({
 	
-	'enterKey .form-control.typeahead': function(e){
+	'keypress input': function(e){
 
-			console.log('a buscar');
+		if(e.keyCode == 13) {
+		console.log('aqi');
+
+			search();
+		}
 
 	},
 	
@@ -19,9 +24,32 @@ Template.searchBar.events({
 });
 
 var search = function(){
-  	console.log('a buscar');
-  	FlowRouter.go('/search/hola');
-  }
+
+	console.log($('input.form-control.typeahead')[1].value);
+
+	var expression = $('input.form-control.typeahead')[1].value
+
+	if(!expression){
+		
+		 Materialize.toast('Debes escribir algo!', 4000) 
+
+	}else{
+
+		if(FlowRouter.current().route.name === 'search'){
+
+			Template.search.searchBarSubmit(expression);
+
+		}else{
+
+	 		FlowRouter.go('/search/'+expression);
+
+	 	}
+
+	}
+
+  
+}
+
 
 Template.searchBar.helpers({
 
@@ -31,3 +59,4 @@ Template.searchBar.helpers({
   }
 
 });
+
