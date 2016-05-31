@@ -1,7 +1,7 @@
 AutoForm.hooks({
   'items-new-form': {
     onSuccess: function (operation, result, template) {
-       Materialize.toast('Item ingresado!', 4000) ;
+       Materialize.toast('Item ingresado!', 4000);
     }
   }
 });

@@ -1,13 +1,19 @@
 Meteor.publish('items',function (){
 
-		return items.find({});
-	
+		return items.find({});	
 });
 
 Meteor.publish('users',function (){
-	if(Roles.userIsInRole( this.userId, 'admin' )){
-		return Meteor.users.find();
-	}else{
-		return Meteor.users.find({_id: this.userId()});
-	}
+	
+	return Meteor.users.find();
+
+});
+
+Meteor.publish('singleItem', function (itemId){
+
+	var item = items.findOne(itemId);
+	console.log(item);
+	var user = Meteor.users.find({_id: item.owner});
+
+	return [item,user];
 });
