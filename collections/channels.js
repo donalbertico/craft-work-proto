@@ -56,6 +56,7 @@ Meteor.methods({
 			if(userb){
 
 				channels.insert({userB : userB});
+				return true;
 			}else{
 
 				return false;

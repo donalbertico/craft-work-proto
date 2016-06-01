@@ -49,6 +49,7 @@ launch-screen@1.0.8
 livedata@1.0.16
 localstorage@1.0.7
 logging@1.0.10
+matb33:collection-hooks@0.8.1
 materialize:materialize@0.97.5
 mdg:validation-error@0.2.0
 meteor@1.1.12

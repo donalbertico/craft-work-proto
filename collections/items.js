@@ -71,6 +71,10 @@ recipeSchema = new SimpleSchema({
 	    autoform :{
 	    	type : 'hidden'
 	    }
+	},
+	type : {
+		type : String 
+		
 	}
 });
 

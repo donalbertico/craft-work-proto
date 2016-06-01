@@ -38,6 +38,11 @@ recipeSchema = new SimpleSchema({
 	    	type : 'hidden'
 	    }
 	},
+	channel:{
+		
+		type: String,
+		regEx: SimpleSchema.RegEx.Id
+	},
 	text : {
 
 		type: String,
@@ -51,6 +56,30 @@ recipeSchema = new SimpleSchema({
 
 
 Meteor.methods({
+	createMessage : function(userB,text){
+		
+		var userb = Meteor.users.findOne(userB);
+		console.log(userb)
+		
+		if(this.userId){
+
+			
+			if(userb){
+
+				channels.insert({userB : userB});
+				
+				messages.insert({text : text , channel:'sdff'});
+				
+				return true;
+			}else{
+
+				return false;
+			}
+		}else{
+
+			return false;
+		}
+	}
 	
 });
 
