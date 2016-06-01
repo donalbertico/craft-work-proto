@@ -66,9 +66,14 @@ Meteor.methods({
 			
 			if(userb){
 
-				channels.insert({userB : userB});
-				
-				messages.insert({text : text , channel:'sdff'});
+				channels.after.insert(function ({userB : userB}){
+					
+					console.log(this._id);	
+					messages.insert({text : text , channel: this._id});
+					
+				});
+
+			
 				
 				return true;
 			}else{
