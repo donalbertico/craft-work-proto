@@ -56,26 +56,34 @@ recipeSchema = new SimpleSchema({
 
 
 Meteor.methods({
-	createMessage : function(userB,text){
+
+	createMessage : function(userB, text){
 		
 		var userb = Meteor.users.findOne(userB);
-		console.log(userb)
+		console.log(userb._id);
 		
 		if(this.userId){
 
 			
 			if(userb){
 
-				channels.after.insert(function ({userB : userB}){
+				var channel = Meteor.call('verifyChannel', userB);
+				console.log(channel);
+				if(channel){
 					
-					console.log(this._id);	
-					messages.insert({text : text , channel: this._id});
+					console.log('si hay canal');
+					var message = messages.insert({text : text , channel: channel});
+					console.log('message');
+					return true;
+				}else{
 					
-				});
-
-			
-				
-				return true;
+					console.log('no hay pero se crea');
+					channels.insert({userB : userB});
+					channel = Meteor.call('verifyChannel', userB);
+					console.log(channel);
+					messages.insert({text : text , channel: channel});
+					return true;
+				}
 			}else{
 
 				return false;
@@ -84,6 +92,34 @@ Meteor.methods({
 
 			return false;
 		}
+	},
+
+	sendMessage : function(channel,text){
+
+		messages.insert({text : text , channel: channel});
+	},
+
+	getMessages : function(){
+
+		var messagesVar = channels.find({ $or: [ {userA : this.userId }, {userB : this.userId} ]}).fetch();
+
+	 	console.log("intento o lo que sea");
+	 	console.log(messagesVar[a]);
+		 for(var a in messagesVar){
+
+		 	console.log(messagesVar[a]);
+		 	if(messagesVar[a].userA!==this.userId){
+
+		 		messagesVar[a].submiter = Meteor.users.findOne({_id : messagesVar[a].userB});
+		 	}else{
+
+		 		messagesVar[a].submiter = Meteor.users.findOne({_id : messagesVar[a].userA});
+		 	}
+
+		 	console.log(messagesVar[a]);
+		 }
+
+		return messagesVar;
 	}
 	
 });

@@ -12,13 +12,20 @@ channels.allow({
 	}
 });
 
+// channels.after.insert(function (userId , doc){
+	
+// 	console.log(this._id);	
+// 	Session.set('lastChannel',this._id);
+// });
+
 recipeSchema = new SimpleSchema({
 	userA : {
 		type : String,
 		autoValue : function(){
 			return this.userId;
 		},
-		regEx: SimpleSchema.RegEx.Id
+		regEx: SimpleSchema.RegEx.Id,
+		optional: false
 	},
 	userB : {
 	   type: String,
@@ -71,7 +78,7 @@ Meteor.methods({
 
 		if(channels.findOne({ $or: [ {userA : this.userId, userB : userB }, {userA : userB , userB : this.userId} ]}) ){
 
-			return	true;
+			return	channels.findOne({ $or: [ {userA : this.userId, userB : userB }, {userA : userB , userB : this.userId} ]})._id;
 		}else{
 
 			return false;

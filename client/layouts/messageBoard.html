@@ -1,0 +1,16 @@
+<template name="messageBoard">
+	
+<ul class="side-nav fixed leftside-navigation ps-container ps-active-y">
+	<p> Mensajes </p>
+	{{# each chats}}
+		
+		<li class="messages">{{submiter._id}}</li>
+
+	{{/each}}
+</ul>
+<!-- {{submiter._id}} -->
+
+{{> chat}}
+
+
+</template>	

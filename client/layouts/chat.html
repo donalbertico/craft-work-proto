@@ -1,0 +1,8 @@
+<template name="chat">
+	
+{{# each messages}}
+	{{text}}
+{{/ each}}
+
+{{> messageNew submiter = channel }}
+</template>

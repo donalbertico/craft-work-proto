@@ -1,21 +1,4 @@
-var profileUserId;
-Template.userProfile.rendered = function() {     
-
-	 $('.modal-trigger').leanModal();
-	 profileUserId = FlowRouter.current().params.id
-	 
-};
-
-Template.userProfile.helpers({
-	
-	'user': function(){
-
-		var user = Meteor.users.findOne({_id: profileUserId});
-		return user;
-	}
-});
-
-Template.userProfile.events({
+Template.messageNew.events({
 	
 	'click .openMessanger' : function(e){
 
@@ -36,7 +19,7 @@ Template.userProfile.events({
 		    		// Materialize.toast('',4000);
 		    		$('#textarea').focus();
 				}else{
-					var createMessage = Meteor.call('createMessage',profileUserId , $("#textarea").val());
+					var createMessage = Meteor.call('sendMessage',FlowRouter.current().params.chatId , $("#textarea").val());
 					console.log(createMessage);
 				}
 		}else{
