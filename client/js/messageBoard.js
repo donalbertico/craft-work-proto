@@ -10,10 +10,8 @@ Template.messageBoard.helpers({
 		var messagesVar = channels.find().fetch();
 
 	 	console.log("intento o lo que sea");
-	 	console.log(messagesVar);
 		 for(var a in messagesVar){
 
-		 	console.log(messagesVar[a]);
 		 	if(messagesVar[a].userA!==this.userId){
 
 		 		messagesVar[a].submiter = Meteor.users.findOne({_id : messagesVar[a].userB});
@@ -22,7 +20,6 @@ Template.messageBoard.helpers({
 		 		messagesVar[a].submiter = Meteor.users.findOne({_id : messagesVar[a].userA});
 		 	}
 
-		 	console.log(messagesVar[a]);
 		 }
 
 		return messagesVar;
@@ -31,10 +28,17 @@ Template.messageBoard.helpers({
 
 Template.messageBoard.events({
 	
-	'click .message' : function(e){
+	'click .side-nav li' : function(e){
+		
+		console.log(this);
 
-		FlowRouter.setParams({ chatId : "postId"});
-	},
+		
+		console.log(FlowRouter.current().params.chatId);
+		
+		Template.chat.changeChat(this._id);
+		
+	
+	}
 	
 	// 'click .btn-flat' : function(e){
 		

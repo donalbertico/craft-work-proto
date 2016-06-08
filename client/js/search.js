@@ -28,7 +28,6 @@ Template.search.result =  function(){
 
 		}
 
-	
 		return result;
 }
 
